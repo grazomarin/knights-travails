@@ -1,47 +1,41 @@
 class Knight {
   constructor() {}
 
-  #returnSortedNeighbours(coord, destination) {
+  #returnNeighbours(coord) {
     const [sX, sY] = coord;
-    const [fX, fY] = destination;
-    const positive = [
+
+    return [
       [sX + 1, sY + 2],
       [sX + 2, sY + 1],
-    ];
-    const negX = [
       [sX - 1, sY + 2],
       [sX - 2, sY + 1],
-    ];
-    const negY = [
       [sX + 1, sY - 2],
       [sX + 2, sY - 1],
-    ];
-    const negative = [
       [sX - 2, sY - 1],
       [sX - 1, sY - 2],
     ];
-    if (sX < fX && sY < fY) return positive;
-    if (sX > fX && sY > fY) return negative;
-    if (sX >= fX) return negX;
-    if (sY >= fY) return negY;
   }
   #toString(coord) {
     return `(${coord[0]}, ${coord[1]})`;
   }
 
   knightMoves(start, finish) {
+    const paths = [];
     const queue = []; //contains arrays
     const visited = new Set(); //contains strings
 
-    queue.push(start);
+    queue.push([start, [start]]);
 
     while (queue.length > 0) {
-      const current = queue.shift();
+      const [current, path] = queue.shift();
       visited.add(this.#toString(current));
 
-      if (visited.has(this.#toString(finish))) return visited;
+      if (this.#toString(current) === this.#toString(finish)) {
+        paths.push(...path);
+        return paths;
+      }
 
-      const neighbours = this.#returnSortedNeighbours(current, finish);
+      const neighbours = this.#returnNeighbours(current, finish);
       for (const neighbour of neighbours) {
         if (visited.has(this.#toString(neighbour))) continue;
 
@@ -52,11 +46,11 @@ class Knight {
           neighbour[1] < 0
         )
           continue;
-        queue.push(neighbour);
+        queue.push([neighbour, [...path, neighbour]]);
       }
     }
   }
 }
 
 const myKnight = new Knight();
-console.log(myKnight.knightMoves([3, 1], [2, 2]));
+console.log(myKnight.knightMoves([7, 8], [8, 8]));
