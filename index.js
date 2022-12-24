@@ -32,7 +32,14 @@ class Knight {
 
       if (this.#toString(current) === this.#toString(finish)) {
         paths.push(...path);
-        return paths;
+        console.log(
+          `The shortest path took ${paths.length - 1} ${
+            paths.length === 2 ? "move" : "moves"
+          }`
+        );
+        paths.forEach((path) => {
+          console.log(this.#toString(path));
+        });
       }
 
       const neighbours = this.#returnNeighbours(current, finish);
@@ -53,4 +60,4 @@ class Knight {
 }
 
 const myKnight = new Knight();
-console.log(myKnight.knightMoves([7, 8], [8, 8]));
+myKnight.knightMoves([0, 0], [1, 2]);
