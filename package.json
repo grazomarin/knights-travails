@@ -1,6 +1,68 @@
 {
-  "dependencies": {
-    "eslint": "^8.30.0",
-    "prettier": "^2.8.1"
-  }
+	"scripts": {
+		"start": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"deploy": "gh-pages -d build"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest",
+			"eslint:recommended"
+		],
+		"rules": {
+			"semi": [
+				1,
+				"always"
+			],
+			"indent": [
+				1,
+				"tab"
+			],
+			"linebreak-style": [
+				0,
+				"unix"
+			],
+			"no-use-before-define": [
+				1,
+				{
+					"functions": false
+				}
+			],
+			"no-unused-expressions": [
+				0,
+				{
+					"allowTernary": true
+				}
+			],
+			"max-len": [
+				2,
+				{
+					"code": 80
+				}
+			]
+		}
+	},
+	"config": {
+		"commitizen": {
+			"path": "cz-conventional-changelog"
+		}
+	},
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@types/node": "^18.14.0",
+		"@types/react-dom": "^18.0.10",
+		"@vitejs/plugin-react": "^3.1.0",
+		"cz-conventional-changelog": "^3.3.0",
+		"eslint": "^8.30.0",
+		"gh-pages": "^4.0.0",
+		"prettier": "^2.8.1",
+		"sass": "^1.57.1",
+		"uniqid": "^5.4.0",
+		"vite": "^4.1.4"
+	}
 }
