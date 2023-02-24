@@ -44,28 +44,80 @@ html {
 	grid-auto-flow: row;
 
 	aspect-ratio: 1 / 1;
-	width: 40vw;
+	width: $board-dimensions;
+	border: 15px solid $board-border-color;
 
 	.row {
 		display: grid;
 		grid-template-columns: repeat(10, 1fr);
 	}
+	.cell {
+		border: 0.5px solid black;
+	}
 
 	.row:nth-child(even) {
 		.cell:nth-child(even) {
-			background-color: black;
+			background-color: $tile-color1;
 		}
 		.cell:nth-child(odd) {
-			background-color: green;
+			background-color: $tile-color2;
 		}
 	}
 
 	.row:nth-child(odd) {
 		.cell:nth-child(odd) {
-			background-color: black;
+			background-color: $tile-color1;
 		}
 		.cell:nth-child(even) {
-			background-color: green;
+			background-color: $tile-color2;
 		}
+	}
+}
+
+.main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	position: relative;
+	width: 100vw;
+}
+
+.knight-cont {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: space-between;
+	gap: 30px;
+
+	position: absolute;
+	left: calc((100vw - $board-dimensions) / 4);
+	transform: translate(-50%, 0);
+
+	.knight {
+		width: calc($board-dimensions / 12);
+	}
+
+	.button-cont {
+		display: flex;
+		flex-direction: column;
+		gap: $small-dimension;
+
+		background-color: $tile-color1;
+		box-shadow: black 0 0 8px 1px;
+		padding: $small-dimension;
+		border-radius: 10px;
+		aspect-ratio: 4/1;
+	}
+
+	.button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		aspect-ratio: 4/1;
+		background-color: $tile-color2;
+		font-size: 1.2rem;
+		border-radius: 10px;
 	}
 }
