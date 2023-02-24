@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
-import Board from './components/Board';
+import Main from './components/Main';
 
 const App = () => {
 	const [moves, setMoves] = useState(0);
@@ -8,7 +8,7 @@ const App = () => {
 	return (
 		<>
 			<Header moves={moves} />
-			<Board />
+			<Main />
 		</>
 	);
 };

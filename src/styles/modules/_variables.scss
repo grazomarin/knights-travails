@@ -1,3 +1,9 @@
 $font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
 	'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 	sans-serif;
+
+$tile-color1: rgb(37, 150, 190);
+$tile-color2: rgb(255, 255, 255);
+$board-border-color: rgb(127, 59, 10);
+$board-dimensions: clamp(300px, 50vw, 700px);
+$small-dimension: 20px;
