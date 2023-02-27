@@ -1,31 +1,62 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import uniqid from 'uniqid';
 import Cell from './Cell';
+import Knight from './Kinght';
+import { SetMovedContext } from './Main';
 
 const Board = () => {
-	const board = (function () {
-		let temp = [];
-		let row = [];
-		let i = 0;
-		let j = 0;
+	const [board, setBoard] = useState(returnBoard());
+	const setMoved = useContext(SetMovedContext);
 
-		while (i < 10 && j < 10) {
-			row.push(<Cell coords={{ x: i, y: j }} key={uniqid()} />);
+	function returnBoard() {
+		let temp = [];
+		let i = 1;
+		let j = 1;
+
+		while (i < 9 && j < 9) {
+			temp.push(
+				<Cell
+					coords={{ x: i, y: j }}
+					handleDrop={handleDrop}
+					key={uniqid()}
+					id={uniqid()}
+				/>
+			);
 			i++;
 
-			if (i === 10) {
-				temp.push(
-					<div className="row" key={uniqid()}>
-						{...row}
-					</div>
-				);
-				row = [];
+			if (i === 9) {
 				j++;
-				i = 0;
+				i = 1;
 			}
 		}
+
 		return temp;
-	})();
+	}
+
+	function handleDrop(e, id) {
+		e.preventDefault();
+		setMoved(true);
+		if (e.target.className.split(' ')[0] === 'cell') {
+			setBoard(
+				board.map((cell) => {
+					if (cell.props.id === id) {
+						const c = cell.props.coords;
+						return (
+							<Cell
+								coords={{ x: c.x, y: c.y }}
+								handleDrop={handleDrop}
+								id={uniqid()}
+								key={uniqid()}
+							>
+								<Knight />
+							</Cell>
+						);
+					}
+					return cell;
+				})
+			);
+		}
+	}
 
 	return <div className="board">{board}</div>;
 };
