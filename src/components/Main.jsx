@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import Board from './Board';
-import Knight from './Kinght';
-
-export const SetMovedContext = React.createContext();
+import { useKnightPosition } from './context/KnightMovedContext';
+import Knight from './Knight';
 
 const Main = () => {
-	const [moved, setMoved] = useState(false);
+	const knightPosition = useKnightPosition();
 
 	return (
 		<div className="main">
 			<div className="left">
 				<div
 					className="knight-cont"
-					style={{ display: moved ? 'none' : 'display' }}
+					style={{ display: knightPosition.x ? 'none' : 'block' }}
 				>
 					<Knight />
 				</div>
@@ -21,9 +20,7 @@ const Main = () => {
 					<div className="button">Reset</div>
 				</div>
 			</div>
-			<SetMovedContext.Provider value={setMoved}>
-				<Board />
-			</SetMovedContext.Provider>
+			<Board />
 		</div>
 	);
 };
