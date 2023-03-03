@@ -8,10 +8,12 @@ const App = () => {
 	const [moves, setMoves] = useState(0);
 
 	return (
+		<SelectedCellProvider>
 			<KnightPositionProvider>
-			<Header moves={moves} />
-			<Main />
+				<Header moves={moves} />
+				<Main />
 			</KnightPositionProvider>
+		</SelectedCellProvider>
 	);
 };
 

@@ -5,27 +5,30 @@ import {
 	useKnightPosition,
 	useSetKnightPosition,
 } from './context/KnightMovedContext';
+import { useSelectedCell } from './context/SelectedCellContext';
 import Knight from './Knight';
 import cross from '../assets/images/cross.svg';
 
 const Board = () => {
 	const [board, setBoard] = useState([]);
 	const knightPosition = useKnightPosition();
-	// const selectedCell = useSelectedCell();
+	const selectedCell = useSelectedCell();
 
 	useEffect(() => {
 		let temp = [];
 		for (let y = 1; y < 9; y++) {
 			for (let x = 1; x < 9; x++) {
-			temp.push(
+				temp.push(
 					<Cell coords={{ x: x, y: y }} key={uniqid()} id={uniqid()}>
 						{knightPosition?.x === x && knightPosition?.y === y && (
-								<Knight />
+							<Knight />
 						)}
 						{selectedCell?.x === x && selectedCell?.y === y && (
-							</Cell>
-						);
-					}
+							<img className="cross" src={cross} alt="" />
+						)}
+					</Cell>
+				);
+			}
 		}
 		setBoard(temp);
 	}, [knightPosition, selectedCell]);

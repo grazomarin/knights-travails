@@ -60,7 +60,6 @@ html {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
 		border: 0.5px solid black;
 	}
 }
@@ -126,4 +125,16 @@ html {
 
 .knight {
 	width: calc($board-dimensions / 12);
+	&:hover {
+		cursor: grab;
+	}
+
+	&:active {
+		cursor: grabbing;
+	}
+}
+
+.cross {
+	width: calc($board-dimensions / 8);
+	position: absolute;
 }
