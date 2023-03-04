@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Board from './Board';
 import { useKnightPosition } from './context/KnightMovedContext';
 import Knight from './Knight';
+import Move from './Move';
 import Reset from './Reset';
 
 const Main = () => {
@@ -17,7 +18,7 @@ const Main = () => {
 					<Knight />
 				</div>
 				<div className="button-cont">
-					<div className="button">Move</div>
+					<Move />
 					<Reset />
 				</div>
 			</div>

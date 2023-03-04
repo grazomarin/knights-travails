@@ -15,7 +15,7 @@ const Cell = ({ coords, id, children }) => {
 	const setSelectedCell = useSetSelectedCell();
 
 	function handleClick() {
-		if (!knightPosition.x) return console.log('move knight first');
+		if (!knightPosition.x) return;
 		if (knightPosition.x !== coords.x || knightPosition.y !== coords.y) {
 			setSelectedCell({
 				x: coords.x,
