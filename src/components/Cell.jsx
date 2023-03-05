@@ -8,7 +8,7 @@ import {
 	useSetSelectedCell,
 } from './context/SelectedCellContext';
 
-const Cell = ({ coords, id, children }) => {
+const Cell = ({ coords, id, children, checkIfCoordsEqual }) => {
 	const knightPosition = useKnightPosition();
 	const setKnightPosition = useSetKnightPosition();
 	const selectedCell = useSelectedCell();
@@ -16,7 +16,10 @@ const Cell = ({ coords, id, children }) => {
 
 	function handleClick() {
 		if (!knightPosition.x) return;
-		if (knightPosition.x !== coords.x || knightPosition.y !== coords.y) {
+		if (
+			!checkIfCoordsEqual(knightPosition, coords) &&
+			!checkIfCoordsEqual(selectedCell, coords)
+		) {
 			setSelectedCell({
 				x: coords.x,
 				y: coords.y,
