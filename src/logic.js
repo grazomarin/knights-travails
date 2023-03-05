@@ -36,9 +36,9 @@ const returnShortestPath = (start, finish) => {
 			if (visited.has(str(neighbour))) continue;
 
 			if (
-				neighbour[0] > 9 ||
+				neighbour[0] > 8 ||
 				neighbour[0] < 1 ||
-				neighbour[1] > 9 ||
+				neighbour[1] > 8 ||
 				neighbour[1] < 1
 			)
 				continue;
