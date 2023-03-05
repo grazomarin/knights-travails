@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import logo from '../assets/images/logo.svg';
+import { useMoveCount } from './context/MoveCountContext';
 
-const Header = ({ moves }) => {
+const Header = () => {
+	const moves = useMoveCount();
+
 	return (
 		<div className="header">
 			<div className="title">

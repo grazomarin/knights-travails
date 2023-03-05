@@ -3,6 +3,7 @@ import {
 	useKnightPosition,
 	useSetKnightPosition,
 } from './context/KnightMovedContext';
+import { useSetMoveCount } from './context/MoveCountContext';
 import {
 	useSelectedCell,
 	useSetSelectedCell,
@@ -13,6 +14,7 @@ const Cell = ({ coords, id, children, checkIfCoordsEqual }) => {
 	const setKnightPosition = useSetKnightPosition();
 	const selectedCell = useSelectedCell();
 	const setSelectedCell = useSetSelectedCell();
+	const setMoveCount = useSetMoveCount();
 
 	function handleClick() {
 		if (!knightPosition.x) return;
@@ -36,6 +38,7 @@ const Cell = ({ coords, id, children, checkIfCoordsEqual }) => {
 				x: coords.x,
 				y: coords.y,
 			});
+			setMoveCount(0);
 		}
 	}
 

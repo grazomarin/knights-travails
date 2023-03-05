@@ -8,12 +8,14 @@ import {
 	useSetSelectedCell,
 } from './context/SelectedCellContext';
 import returnShortestPath from '../logic';
+import { useSetMoveCount } from './context/MoveCountContext';
 
 const Move = () => {
 	const knightPosition = useKnightPosition();
 	const selectedCell = useSelectedCell();
 	const setKnightPosition = useSetKnightPosition();
 	const setSelectedCell = useSetSelectedCell();
+	const setMoveCount = useSetMoveCount();
 
 	function moveKnightWithDelay(moveset) {
 		if (moveset.length === 0) {
@@ -37,12 +39,14 @@ const Move = () => {
 					y: move[1],
 				};
 			});
+			setMoveCount((prev) => (prev += 1));
 			moveKnightWithDelay(moveset.slice(1));
 		}, 800);
 	}
 
 	function handleMove() {
 		if (!knightPosition.x || !selectedCell.x) return;
+		setMoveCount(0);
 		const shortestPath = returnShortestPath(
 			[knightPosition.x, knightPosition.y],
 			[selectedCell.x, selectedCell.y]
