@@ -2,3 +2,4 @@ node_modules
 log.txt
 secured.js
 build
+.history
