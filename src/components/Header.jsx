@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import logo from '../assets/images/logo.svg';
-import { useMoveCount } from './context/MoveCountContext';
+import React, { useState } from "react";
+import logo from "../assets/images/logo.svg";
+import { useMoveCount } from "./context/MoveCountContext";
 
 const Header = () => {
 	const moves = useMoveCount();
@@ -16,7 +16,11 @@ const Header = () => {
 				</a>
 			</div>
 			<div className="moves">Number Of Moves: {moves}</div>
-			<img className="logo" src={logo} alt="" />
+			<img
+				className="logo"
+				src={logo}
+				alt=""
+			/>
 		</div>
 	);
 };

@@ -47,6 +47,18 @@ html {
 	}
 }
 
+.main {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas: "left board right";
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
+
+	position: relative;
+	width: 100vw;
+}
+
 .board {
 	display: grid;
 	grid-template: repeat(8, 1fr) / repeat(8, 1fr);
@@ -56,6 +68,10 @@ html {
 	width: $board-dimensions;
 	border: 15px solid $board-border-color;
 
+	grid-area: board;
+
+
+
 	.cell {
 		display: flex;
 		justify-content: center;
@@ -64,28 +80,19 @@ html {
 	}
 }
 
-.main {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	position: relative;
-	width: 100vw;
-}
 
 .left {
 	display: flex;
-	flex-flow: column;
-	align-items: center;
-	justify-content: space-between;
-	gap: 30px;
+	flex-direction: column;
+	gap:30px;
 
-	position: absolute;
-	left: calc((100vw - $board-dimensions) / 4);
-	transform: translate(-50%, 0);
+	grid-area: "left";
+
 
 	.knight-cont {
-		position: absolute;
+		display: flex;
+		justify-content: center;
+		justify-items: center;
 		top: calc(0px - $board-dimensions / 12 - $small-dimension * 2);
 	}
 
@@ -93,6 +100,7 @@ html {
 		display: flex;
 		flex-direction: column;
 		gap: $small-dimension;
+
 
 		background-color: $tile-color1;
 		box-shadow: black 0 2px 8px 1px;
@@ -125,7 +133,9 @@ html {
 }
 
 .knight {
-	width: calc($board-dimensions / 12);
+	width: calc($board-dimensions / 10);
+
+
 	&:hover {
 		cursor: grab;
 	}

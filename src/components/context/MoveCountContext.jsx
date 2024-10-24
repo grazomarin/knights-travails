@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 
 const MoveCount = React.createContext();
 const SetMoveCount = React.createContext();
@@ -11,9 +11,7 @@ export const MoveCountProvider = ({ children }) => {
 
 	return (
 		<MoveCount.Provider value={count}>
-			<SetMoveCount.Provider value={setCount}>
-				{children}
-			</SetMoveCount.Provider>
+			<SetMoveCount.Provider value={setCount}>{children}</SetMoveCount.Provider>
 		</MoveCount.Provider>
 	);
 };

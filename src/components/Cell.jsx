@@ -1,13 +1,7 @@
-import React, { useState } from 'react';
-import {
-	useKnightPosition,
-	useSetKnightPosition,
-} from './context/KnightMovedContext';
-import { useSetMoveCount } from './context/MoveCountContext';
-import {
-	useSelectedCell,
-	useSetSelectedCell,
-} from './context/SelectedCellContext';
+import React, { useState } from "react";
+import { useKnightPosition, useSetKnightPosition } from "./context/KnightMovedContext";
+import { useSetMoveCount } from "./context/MoveCountContext";
+import { useSelectedCell, useSetSelectedCell } from "./context/SelectedCellContext";
 
 const Cell = ({ coords, id, children, checkIfCoordsEqual }) => {
 	const knightPosition = useKnightPosition();
@@ -17,11 +11,8 @@ const Cell = ({ coords, id, children, checkIfCoordsEqual }) => {
 	const setMoveCount = useSetMoveCount();
 
 	function handleClick() {
-		if (!knightPosition.x) return;
-		if (
-			!checkIfCoordsEqual(knightPosition, coords) &&
-			!checkIfCoordsEqual(selectedCell, coords)
-		) {
+		if (knightPosition.x == null) return;
+		if (!checkIfCoordsEqual(knightPosition, coords) && !checkIfCoordsEqual(selectedCell, coords)) {
 			setSelectedCell({
 				x: coords.x,
 				y: coords.y,
@@ -31,9 +22,9 @@ const Cell = ({ coords, id, children, checkIfCoordsEqual }) => {
 
 	function handleDrop(e) {
 		e.preventDefault();
-		const targetClassName = e.target.className.split(' ')[0];
+		const targetClassName = e.target.className.split(" ")[0];
 
-		if (targetClassName === 'cell') {
+		if (targetClassName === "cell") {
 			setKnightPosition({
 				x: coords.x,
 				y: coords.y,
@@ -52,11 +43,11 @@ const Cell = ({ coords, id, children, checkIfCoordsEqual }) => {
 				backgroundColor: `${
 					coords.y % 2
 						? coords.x % 2
-							? 'rgb(37, 150, 190)'
-							: 'rgb(255, 255, 255)'
+							? "rgb(37, 150, 190)"
+							: "rgb(255, 255, 255)"
 						: coords.x % 2
-						? 'rgb(255, 255, 255)'
-						: 'rgb(37, 150, 190)'
+						? "rgb(255, 255, 255)"
+						: "rgb(37, 150, 190)"
 				}`,
 			}}
 		>
